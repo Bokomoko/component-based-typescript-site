@@ -1,6 +1,17 @@
 import React from 'react';
 import styles from './latestposts.module.css';
 
+interface Posts {
+  title: string;
+  image: string;
+  text: string;
+  link: string;
+}
+
+interface ListOfPosts {
+  posts: Array<Posts>;
+}
+
 export default function Latestpostprops(props) {
   const { posts } = props;
   return (

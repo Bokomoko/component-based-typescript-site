@@ -5,11 +5,18 @@ interface Testimonial {
   country: string;
   text: String;
 }
+
+interface ListOfTestimonials {
+  listOfTestimonials: Array<Testimonial>;
+}
+
 import React, { useState } from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 import styles from './iramaitestimonialcarousel.module.css';
 
-export default function IramaiTestimonialCarousel(props) {
+export default function IramaiTestimonialCarousel(
+  props: ListOfTestimonials
+): JSX.Element {
   const [index, setIndex] = useState(0);
   const { listOfTestimonials } = props;
 
@@ -29,16 +36,17 @@ export default function IramaiTestimonialCarousel(props) {
     </span>
   );
 
-
-
   const slides = listOfTestimonials.map((aTestimonial: Testimonial, index) => {
     return (
-      <Carousel.Item
-        key={'tstm-' + index}
-      >
+      <Carousel.Item key={'tstm-' + index}>
         <div className={styles.testimonialitem}>
-          <img src={aTestimonial.image} className={styles.testimonialpicture} ></img>
-          <h3>{aTestimonial.name},{aTestimonial.country}</h3>
+          <img
+            src={aTestimonial.image}
+            className={styles.testimonialpicture}
+          ></img>
+          <h3>
+            {aTestimonial.name},{aTestimonial.country}
+          </h3>
           <h4>{aTestimonial.jobTitle}</h4>
           <q>{aTestimonial.text} </q>
         </div>
@@ -62,6 +70,6 @@ export default function IramaiTestimonialCarousel(props) {
       >
         {slides}
       </Carousel>
-    </div >
+    </div>
   );
 }

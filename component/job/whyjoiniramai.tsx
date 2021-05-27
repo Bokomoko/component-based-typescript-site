@@ -1,7 +1,17 @@
 import React from 'react';
 import styles from './whyjoiniramai.module.css';
 
-export default function WhyJoinIramai(props) {
+interface Reason {
+  icon: string;
+  title: string;
+  text: string;
+}
+
+interface WhyJoinParm {
+  reasons: Array<Reason>;
+}
+
+export default function WhyJoinIramai(props: WhyJoinParm): JSX.Element {
   const { reasons } = props;
 
   return (

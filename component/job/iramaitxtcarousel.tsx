@@ -7,7 +7,16 @@ import {
   CarouselCaption,
 } from 'reactstrap';
 
-export default function IramaiTxtCarousel(props) {
+interface Article {
+  quote: string;
+  articleURL: string;
+}
+
+interface TxtCarParm {
+  listOfArticles: Array<Article>;
+}
+
+export default function IramaiTxtCarousel(props: TxtCarParm): JSX.Element {
   const [activeIndex, setActiveIndex] = useState(0);
   const [animating, setAnimating] = useState(false);
 
@@ -25,22 +34,22 @@ export default function IramaiTxtCarousel(props) {
     setActiveIndex(nextIndex);
   };
 
-  const goToIndex = (newIndex) => {
+  const goToIndex = newIndex => {
     setActiveIndex(newIndex);
   };
 
   const slides = listOfArticles.map((article, index) => {
     return (
       <CarouselItem
-        className="itemslide"
-        tag="div"
+        className='itemslide'
+        tag='div'
         key={index}
         onExiting={() => setAnimating(true)}
         onExited={() => setAnimating(false)}
       >
         <q>{article.quote} </q>
         <br />
-        <a href={article.articleUrl} target="_blank">
+        <a href={article.articleURL} target='_blank'>
           Read article
         </a>
       </CarouselItem>
@@ -79,22 +88,22 @@ export default function IramaiTxtCarousel(props) {
         `}
       </style>
       <Carousel
-        className="carouselbox"
+        className='carouselbox'
         activeIndex={activeIndex}
         next={next}
         previous={previous}
       >
         {slides}
         <CarouselControl
-          className="arrows"
-          direction="prev"
-          directionText="Previous"
+          className='arrows'
+          direction='prev'
+          directionText='Previous'
           onClickHandler={previous}
         />
         <CarouselControl
-          className="arrows"
-          direction="next"
-          directionText="Next"
+          className='arrows'
+          direction='next'
+          directionText='Next'
           onClickHandler={next}
         />
       </Carousel>

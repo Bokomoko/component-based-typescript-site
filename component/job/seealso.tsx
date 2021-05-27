@@ -1,33 +1,33 @@
 import React from 'react';
 interface SeeAlsoData {
-  jobTitle: string
-  jobPage: string
+  jobTitle: string;
+  jobPage: string;
+}
+interface SeeAlsoParms {
+  title: string;
+  listOfJobs: Array<SeeAlsoData>;
+  color: string;
 }
 
-interface listOfSeeAlso {
-  listOfSA: Array<SeeAlsoData>
-}
-
-
-export default function SeeAlso(props) {
-  const { title, listOfJobs, color } = props
+export default function SeeAlso(props: SeeAlsoParms): JSX.Element {
+  const { title, listOfJobs, color } = props;
 
   const colorsAvailable = {
     green: {
-      background: "#41BFAD0F",
-      icon: `./icons/briefcaseicongreen.svg`
+      background: '#41BFAD0F',
+      icon: `./icons/briefcaseicongreen.svg`,
     },
     blue: {
-      background: "#56A8F70F",
-      icon: `./icons/briefcaseiconblue.svg`
+      background: '#56A8F70F',
+      icon: `./icons/briefcaseiconblue.svg`,
     },
     darkblue: {
-      background: "#6C7BD40F",
-      icon: `./icons/briefcaseicondarkblue.svg`
+      background: '#6C7BD40F',
+      icon: `./icons/briefcaseicondarkblue.svg`,
     },
-  }
-  const setColor = colorsAvailable[color]
-  const colorClass = (`item${color}`)
+  };
+  const setColor = colorsAvailable[color];
+  const colorClass = `item${color}`;
   return (
     <div>
       <style>
@@ -103,14 +103,13 @@ export default function SeeAlso(props) {
         }
       `}
       </style>
-      <div className="checkalsobox">
+      <div className='checkalsobox'>
         <h5> {title}</h5>
-        <div className="itemlist">
-
+        <div className='itemlist'>
           {listOfJobs.map((aJob, index) => {
             return (
-              <div className={colorClass} key={"lsj-" + index}>
-                <div className="itemicon">
+              <div className={colorClass} key={'lsj-' + index}>
+                <div className='itemicon'>
                   <img src={setColor.icon} />
                 </div>
                 <a href={aJob.jobPage}> {aJob.jobTitle}</a>
@@ -119,6 +118,6 @@ export default function SeeAlso(props) {
           })}
         </div>
       </div>
-    </div >
+    </div>
   );
 }
