@@ -1,9 +1,12 @@
 import styles from './fancylist.module.css';
 import React from 'react';
 
-// fancyList : a list of items with a title
+interface FancyParms {
+  listTitle: string;
+  listItems: string[];
+}
 
-export default function FancyList(props) {
+export default function FancyList(props: FancyParms): JSX.Element {
   const { listTitle, listItems } = props;
 
   return (
